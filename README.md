@@ -1,5 +1,8 @@
 # Memory Game Project
 
+A simple memory game app that keeps track of time and star rating.
+
+
 ## Table of Contents
 
 * [Instructions](#instructions)
