@@ -1,0 +1,85 @@
+@media screen and (max-width: 360px) {
+  .deck {
+    width: 300px;
+    min-height: 400px;
+    padding: 10px;
+  }
+
+  .deck .card {
+    width: 65px;
+    height: 65px;
+  }
+
+  .score-panel {
+    width: 270px;
+  }
+
+  .win_modal {
+    padding-top: 100px;
+  }
+
+  .win_text {
+    width: 300px;
+  }
+
+}
+
+@media screen and (min-width: 361px) and (max-width: 450px) {
+  .deck {
+    width: 350px;
+    padding: 5px;
+    min-height: 480px;
+  }
+
+  .deck .card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .score-panel {
+    width: 270px;
+  }
+
+  .win_modal {
+    padding-top: 100px;
+  }
+
+  .win_text {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 451px) and (max-width: 680px) {
+  .deck {
+    width: 420px;
+    padding: 5px;
+    min-height: 500px;
+  }
+
+  .deck .card {
+    width: 90px;
+    height: 90px;
+  }
+
+  .score-panel {
+    width: 350px;
+  }
+
+  .win_modal {
+    padding-top: 100px;
+  }
+
+  .win_text {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 681px) and (max-width: 800px) {
+  .win_modal {
+    padding-top: 200px;
+  }
+
+  .win_text {
+    width: 500px;
+  }
+}
