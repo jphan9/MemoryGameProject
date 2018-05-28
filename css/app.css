@@ -121,6 +121,10 @@ h1 {
     color: red;
 }
 
+/*
+ * Styles for the win modal popup
+ */
+ 
 .win_modal {
   display: none;
   position: fixed;
