@@ -78,7 +78,6 @@ function displayCard(card) {
 // Function that adds the card that was selected to the open card list.
 function addCardToList(card) {
   openCardsList.push(card);
-  console.log(openCardsList);
 }
 
 // Function that performans actions if two cards match. If the two cards match, remove them from the open cards list followed by renaming the class name of the first element child to
@@ -115,9 +114,6 @@ function noMatch(openCardsList) {
     {
       if(cardOne == deck[i].firstElementChild.className)
       {
-        console.log("CardL");
-        console.log(cardOne);
-        console.log(deck[i].firstElementChild.className);
         if(deck[i].className == "card open show disable")
         {
           deck[i].className = "card enable";
@@ -125,9 +121,6 @@ function noMatch(openCardsList) {
       }
       else if(cardTwo == deck[i].firstElementChild.className)
       {
-        console.log("CardTi");
-        console.log(cardTwo);
-        console.log(deck[i].firstElementChild.className);
         if(deck[i].className == "card open show disable")
         {
           deck[i].className = "card enable";
@@ -164,20 +157,15 @@ function playMatchingGame() {
 
         if(openCardsList.length == 2)
         {
-          console.log("Test");
-
           if(openCardsList[0] === openCardsList[1])
           {
-            console.log("Test111");
             match(openCardsList);
           }
           else if(openCardsList[0] !== openCardsList[1])
           {
-            console.log("im");
             noMatch(openCardsList);
           }
           moveCounter++;
-          console.log(moveCounter);
           updateMoveCounter(moveCounter);
           starRating();
 
