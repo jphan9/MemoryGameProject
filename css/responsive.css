@@ -1,4 +1,4 @@
-@media screen and (max-width: 360px) {
+ @media screen and (max-width: 360px) {
   .deck {
     width: 300px;
     min-height: 400px;
@@ -74,7 +74,7 @@
   }
 }
 
-@media screen and (min-width: 681px) and (max-width: 800px) {
+@media screen and (min-width: 681px) and (max-width: 2400px) {
   .win_modal {
     padding-top: 200px;
   }
