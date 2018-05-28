@@ -11,9 +11,9 @@ let matchCounter = 0;
 // Doms to get elements of multiple classes.
 const deck = document.querySelectorAll('.card');
 let restartButton = document.querySelector('.restart');
-let playAgainButton = document.querySelector('.restart_button');
+let playAgainButton = document.querySelector('.restart-button');
 const starsList = document.getElementsByClassName('fa fa-star');
-let popup = document.querySelector('.win_modal');
+let popup = document.querySelector('.win-modal');
 let timer = document.querySelector('.timer');
 let moves = document.querySelector('.moves');
 // Initialize timer variables.
@@ -174,8 +174,8 @@ function playMatchingGame() {
 // Function that displays the win popup modal. It displays the timer duration and star rating as well as a play again button.
 function displayWin() {
   let close = document.querySelector('.close');
-  let timerDuration = document.querySelector('.timer_duration');
-  let starRate = document.querySelector('.star_rating');
+  let timerDuration = document.querySelector('.timer-duration');
+  let starRate = document.querySelector('.star-rating');
 
   popup.style.display = "inline";
   timerDuration.textContent = "The time it took is: " + timer.textContent;

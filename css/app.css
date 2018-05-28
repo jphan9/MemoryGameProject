@@ -126,7 +126,7 @@ h1 {
  * Styles for the win modal popup
  */
 
-.win_modal {
+.win-modal {
   display: none;
   position: fixed;
   padding-top: 300px;
@@ -136,7 +136,7 @@ h1 {
   height: 100%;
 }
 
-.win_text {
+.win-text {
   padding: 50px;
   margin: auto;
   border: 5px solid;

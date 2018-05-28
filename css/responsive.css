@@ -14,11 +14,11 @@
     width: 270px;
   }
 
-  .win_modal {
+  .win-modal {
     padding-top: 100px;
   }
 
-  .win_text {
+  .win-text {
     width: 300px;
   }
 
@@ -40,11 +40,11 @@
     width: 270px;
   }
 
-  .win_modal {
+  .win-modal {
     padding-top: 100px;
   }
 
-  .win_text {
+  .win-text {
     width: 300px;
   }
 }
@@ -65,21 +65,21 @@
     width: 350px;
   }
 
-  .win_modal {
+  .win-modal {
     padding-top: 100px;
   }
 
-  .win_text {
+  .win-text {
     width: 300px;
   }
 }
 
 @media screen and (min-width: 681px) and (max-width: 2400px) {
-  .win_modal {
+  .win-modal {
     padding-top: 200px;
   }
 
-  .win_text {
+  .win-text {
     width: 500px;
   }
 }
