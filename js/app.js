@@ -1,11 +1,13 @@
-/*
- * Create a list that holds all of your cards
- */
+// Array that holds the cards.
 const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf",
     "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
+// Holds the size of the cards array.
 const deckSize = listOfCards.length;
+// New open cards list.
 const openCardsList = [];
+// Initialize the moveCounter and matchCounter and set them to 0.
 let moveCounter = 0, matchCounter = 0;
+// Doms to get elements of multiple classes.
 const deck = document.querySelectorAll('.card');
 let restartButton = document.querySelector('.restart');
 let playAgainButton = document.querySelector('.restart_button');
@@ -13,20 +15,13 @@ const starsList = document.getElementsByClassName('fa fa-star');
 let popup = document.querySelector('.win_modal');
 let timer = document.querySelector('.timer');
 let moves = document.querySelector('.moves');
+// Initialize timer variables.
 let timerStart = false;
 let minutes = 0;
 let seconds = 0;
 let hours = 0;
 
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// loops through each card and each deck element's first child's class name to the name of the suffled cards element.
+// Function that loops through each card and each deck element's first child's class name to the name of the suffled cards element.
 function setupCards() {
   let shuffledCards = shuffle(listOfCards);
   for(let i = 0; i < deckSize; i++)
@@ -50,18 +45,7 @@ function shuffle(array) {
     return array;
 }
 
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
+// Function that determines the star rating depending on the number of moves. It also sets the color of the moves number depneding on the number of moves.
 function starRating() {
   if(moveCounter <= 25)
   {
@@ -86,18 +70,18 @@ function starRating() {
   }
 }
 
-// changes the card to show and disables it.
+// Function that changes the card to show and disables it so that you cannot click it.
 function displayCard(card) {
     card.className = "card open show disable";
 }
 
-// adds the card that was selected to the open card list.
+// Function that adds the card that was selected to the open card list.
 function addCardToList(card) {
   openCardsList.push(card);
   console.log(openCardsList);
 }
 
-// If the two cards match, remove them from the open cards list followed by renaming the class name of the first element child to
+// Function that performans actions if two cards match. If the two cards match, remove them from the open cards list followed by renaming the class name of the first element child to
 // "card match disable". Also increase the matchCounter.
 function match(openCardsList) {
   let cardTwo = openCardsList.pop();
@@ -118,6 +102,9 @@ function match(openCardsList) {
   return matchCounter++;
 }
 
+// Function that performs actions if the two cards don't match. If the two cards do not match, remove them from the open cards list
+// followed by looping through the deck array and flipping the card back. It also enables the card so that it can be clicked. The contents inside the function
+// is also wrapped around a setTimeout method so that the cards don't instantly flip back over.
 function noMatch(openCardsList) {
   setTimeout(function() {
     let cardTwo = openCardsList.pop();
@@ -150,15 +137,18 @@ function noMatch(openCardsList) {
   },200);
 }
 
+// Function that updates the moves text content to the value of the moveCounter.
 function updateMoveCounter(moveNumber) {
   moves.textContent = moveCounter;
 }
 
+// Function that starts the game when the page is loaded. By shuffling the deck, setting up the deck, and starting the match.
 function initializeGame() {
   setupCards();
   playMatchingGame();
 }
 
+// Function that performs actions for playing the game. It performs match checking logic when a card is clicked and determines the win condition.
 function playMatchingGame() {
   for(let i = 0; i < deckSize; i++)
   {
@@ -210,6 +200,7 @@ function playMatchingGame() {
   });
 }
 
+// Function that displays the win popup modal. It displays the timer duration and star rating as well as a play again button.
 function displayWin() {
   let close = document.querySelector('.close');
   let timerDuration = document.querySelector('.timer_duration');
@@ -236,7 +227,8 @@ function displayWin() {
 
 }
 
-// Resets the game. Sets the counters and timer to 0 as well as sets the stars to visible. Also flips the cards over and shuffles the deck.
+// Function that resets the game. Sets the counters and timer to 0 as well as sets the stars to visible.
+// Also flips the cards over and shuffles the deck. Resets the colro of the timer and moves to green.
 function resetGame() {
   moveCounter = 0;
   matchCounter = 0;
@@ -265,7 +257,8 @@ function resetGame() {
   setupCards();
 }
 
-// Starts the timer and counts upn every second with using the setTimeout. Also the timer changes color depending on how long the minutes have passed.
+// Function that starts the timer and counts up every second with using the setTimeout method.
+// Also the timer changes color depending on how long the minutes have passed.
 function startTimer() {
   if(timerStart == true)
   {
