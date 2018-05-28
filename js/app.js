@@ -6,7 +6,8 @@ const deckSize = listOfCards.length;
 // New open cards list.
 const openCardsList = [];
 // Initialize the moveCounter and matchCounter and set them to 0.
-let moveCounter = 0, matchCounter = 0;
+let moveCounter = 0;
+let matchCounter = 0;
 // Doms to get elements of multiple classes.
 const deck = document.querySelectorAll('.card');
 let restartButton = document.querySelector('.restart');
@@ -24,45 +25,41 @@ let hours = 0;
 // Function that loops through each card and each deck element's first child's class name to the name of the suffled cards element.
 function setupCards() {
   let shuffledCards = shuffle(listOfCards);
-  for(let i = 0; i < deckSize; i++)
-  {
-      deck[i].firstElementChild.className = shuffledCards[i];
+  for(let i = 0; i < deckSize; i++) {
+    deck[i].firstElementChild.className = shuffledCards[i];
   }
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
 
 // Function that determines the star rating depending on the number of moves. It also sets the color of the moves number depneding on the number of moves.
 function starRating() {
-  if(moveCounter <= 25)
-  {
+  if(moveCounter <= 25) {
     starsList[0].style.display = 'inline-block';
-    starsList[1].style.display = 'inline-block';;
+    starsList[1].style.display = 'inline-block';
     starsList[2].style.display = 'inline-block';
     moves.style.color = "green";
   }
-  else if(moveCounter > 25 && moveCounter <=65)
-  {
+  else if(moveCounter > 25 && moveCounter <=65) {
     starsList[0].style.display = 'inline-block';
     starsList[1].style.display = 'inline-block';
     starsList[2].style.display = 'none';
     moves.style.color = "orange";
   }
-  else if(moveCounter > 65)
-  {
+  else if(moveCounter > 65) {
     starsList[0].style.display = 'inline-block';
     starsList[1].style.display = 'none';
     starsList[2].style.display = 'none';
@@ -72,7 +69,7 @@ function starRating() {
 
 // Function that changes the card to show and disables it so that you cannot click it.
 function displayCard(card) {
-    card.className = "card open show disable";
+  card.className = "card open show disable";
 }
 
 // Function that adds the card that was selected to the open card list.
@@ -81,19 +78,16 @@ function addCardToList(card) {
 }
 
 // Function that performans actions if two cards match. If the two cards match, remove them from the open cards list followed by renaming the class name of the first element child to
-// "card match disable". Also increase the matchCounter.
+// "card match disable". Also increase the matchCounter and return it.
 function match(openCardsList) {
   let cardTwo = openCardsList.pop();
   let cardOne = openCardsList.pop();
 
-  for(let i = 0; i < deckSize; i++)
-  {
-    if(deck[i].firstElementChild.className === cardOne)
-    {
+  for(let i = 0; i < deckSize; i++) {
+    if(deck[i].firstElementChild.className === cardOne) {
       deck[i].className = "card match disable";
     }
-    else if (deck[i].firstElementChild.className === cardTwo)
-    {
+    else if (deck[i].firstElementChild.className === cardTwo) {
       deck[i].className = "card match disable";
     }
   }
@@ -110,19 +104,14 @@ function noMatch(openCardsList) {
     let cardOne = openCardsList.pop();
 
 
-    for(let i = 0; i < deckSize; i++)
-    {
-      if(cardOne == deck[i].firstElementChild.className)
-      {
-        if(deck[i].className == "card open show disable")
-        {
+    for(let i = 0; i < deckSize; i++) {
+      if(cardOne == deck[i].firstElementChild.className) {
+        if(deck[i].className == "card open show disable") {
           deck[i].className = "card enable";
         }
       }
-      else if(cardTwo == deck[i].firstElementChild.className)
-      {
-        if(deck[i].className == "card open show disable")
-        {
+      else if(cardTwo == deck[i].firstElementChild.className) {
+        if(deck[i].className == "card open show disable") {
           deck[i].className = "card enable";
         }
       }
@@ -143,11 +132,9 @@ function initializeGame() {
 
 // Function that performs actions for playing the game. It performs match checking logic when a card is clicked and determines the win condition.
 function playMatchingGame() {
-  for(let i = 0; i < deckSize; i++)
-  {
+  for(let i = 0; i < deckSize; i++) {
       deck[i].addEventListener('click',function () {
-        if(timerStart == false)
-        {
+        if(timerStart == false) {
           timerStart = true;
           startTimer();
         }
@@ -155,22 +142,18 @@ function playMatchingGame() {
         displayCard(deck[i]);
         addCardToList(deck[i].firstElementChild.className);
 
-        if(openCardsList.length == 2)
-        {
-          if(openCardsList[0] === openCardsList[1])
-          {
+        if(openCardsList.length == 2) {
+          if(openCardsList[0] === openCardsList[1]) {
             match(openCardsList);
           }
-          else if(openCardsList[0] !== openCardsList[1])
-          {
+          else if(openCardsList[0] !== openCardsList[1]) {
             noMatch(openCardsList);
           }
           moveCounter++;
           updateMoveCounter(moveCounter);
           starRating();
 
-          if(matchCounter == 8)
-          {
+          if(matchCounter == 8) {
             timerStart = false;
             displayWin();
           }
@@ -196,23 +179,19 @@ function displayWin() {
 
   popup.style.display = "inline";
   timerDuration.textContent = "The time it took is: " + timer.textContent;
-  if(moveCounter <= 25)
-  {
+  if(moveCounter <= 25) {
     starRate.textContent = "Your star rating is: 3";
   }
-  else if(moveCounter > 25 && moveCounter <=65)
-  {
+  else if(moveCounter > 25 && moveCounter <= 65) {
     starRate.textContent = "Your star rating is: 2";
   }
-  else if(moveCounter > 65)
-  {
+  else if(moveCounter > 65) {
     starRate.textContent = "Your star rating is: 1";
   }
 
   close.addEventListener('click',function() {
     popup.style.display = "none";
   });
-
 }
 
 // Function that resets the game. Sets the counters and timer to 0 as well as sets the stars to visible.
@@ -237,8 +216,7 @@ function resetGame() {
 
   updateMoveCounter(moveCounter);
 
-  for(let i = 0; i < deckSize; i++)
-  {
+  for(let i = 0; i < deckSize; i++) {
     deck[i].className = "card enable";
   }
 
@@ -248,31 +226,25 @@ function resetGame() {
 // Function that starts the timer and counts up every second with using the setTimeout method.
 // Also the timer changes color depending on how long the minutes have passed.
 function startTimer() {
-  if(timerStart == true)
-  {
+  if(timerStart == true) {
     seconds++;
 
-    if(seconds == 60)
-    {
+    if(seconds == 60) {
       minutes++;
       seconds = 0;
     }
-    if(minutes == 60)
-    {
+    if(minutes == 60) {
       hours++;
       minutes = 0;
     }
 
-    if(minutes >= 1 && minutes < 2)
-    {
+    if(minutes >= 1 && minutes < 2) {
       timer.style.color = "orange";
     }
-    else if(minutes >= 2)
-    {
+    else if(minutes >= 2) {
       timer.style.color = "red";
     }
-    else
-    {
+    else {
       timer.style.color = "green";
     }
 
